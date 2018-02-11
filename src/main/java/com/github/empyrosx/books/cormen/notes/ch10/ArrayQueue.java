@@ -9,9 +9,9 @@ import java.util.Arrays;
  */
 public class ArrayQueue<T> implements Queue<T> {
 
-    private Object[] items;
-    private int head;
-    private int tail;
+    protected Object[] items;
+    protected int head;
+    protected int tail;
 
     public ArrayQueue() {
         this.items = new Object[4];
@@ -25,17 +25,7 @@ public class ArrayQueue<T> implements Queue<T> {
         tail = (tail + 1) % items.length;
 
         if (head == tail) {
-            // increase queue size
-            Object[] newItems = new Object[items.length * 2];
-
-            // from head to the end
-            System.arraycopy(items, head, newItems, 0, items.length - head);
-            // from 0 to the tail
-            System.arraycopy(items, 0, newItems, items.length - head, tail);
-
-            head = 0;
-            tail = items.length;
-            items = newItems;
+            doubleSizeItems();
         }
     }
 
@@ -55,6 +45,20 @@ public class ArrayQueue<T> implements Queue<T> {
     @Override
     public int size() {
         return (items.length + tail - head) % items.length;
+    }
+
+    protected void doubleSizeItems() {
+        // increase queue size
+        Object[] newItems = new Object[items.length * 2];
+
+        // from head to the end
+        System.arraycopy(items, head, newItems, 0, items.length - head);
+        // from 0 to the tail
+        System.arraycopy(items, 0, newItems, items.length - head, tail);
+
+        head = 0;
+        tail = items.length;
+        items = newItems;
     }
 
     @Override
