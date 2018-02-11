@@ -19,6 +19,11 @@ public interface Queue<T> {
     T dequeue();
 
     /**
+     * Returns the first element of this queue without removing.
+     */
+    T peek();
+
+    /**
      * Returns the number of elements of this queue.
      */
     int size();

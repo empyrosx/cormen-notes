@@ -43,6 +43,12 @@ public class ArrayQueue<T> implements Queue<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
+    public T peek() {
+        return (T) items[head];
+    }
+
+    @Override
     public int size() {
         return (items.length + tail - head) % items.length;
     }

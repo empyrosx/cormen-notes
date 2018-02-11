@@ -50,6 +50,11 @@ public class ArrayStack<T> implements Stack<T> {
     }
 
     @Override
+    public int size() {
+        return top + 1;
+    }
+
+    @Override
     public String toString() {
         return "ArrayStack{" +
                 "items=" + Arrays.toString(items) +

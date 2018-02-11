@@ -1,15 +1,22 @@
 package com.github.empyrosx.books.cormen.notes.ch10;
 
 import com.github.empyrosx.books.cormen.notes.structures.Queue;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ArrayQueueTest {
 
-    @Test
-    void testEnqueue() {
-        Queue<String> queue = new ArrayQueue<>();
+    private static Stream<Queue<String>> createQueues() {
+        return Stream.of(new ArrayQueue<>(), new QueueByTwoStacks<>());
+    }
+
+    @ParameterizedTest
+    @MethodSource(value = "createQueues")
+    void testEnqueue(Queue<String> queue) {
         queue.enqueue("First");
         queue.enqueue("Second");
         queue.enqueue("Third");
@@ -17,9 +24,9 @@ class ArrayQueueTest {
         assertEquals(3, queue.size());
     }
 
-    @Test
-    void testDequeue() {
-        Queue<String> queue = new ArrayQueue<>();
+    @ParameterizedTest
+    @MethodSource(value = "createQueues")
+    void testDequeue(Queue<String> queue) {
         queue.enqueue("First");
         queue.enqueue("Second");
         queue.enqueue("Third");
@@ -30,9 +37,9 @@ class ArrayQueueTest {
         assertEquals(0, queue.size());
     }
 
-    @Test
-    void testCircularity() {
-        Queue<String> queue = new ArrayQueue<>();
+    @ParameterizedTest
+    @MethodSource(value = "createQueues")
+    void testCircularity(Queue<String> queue) {
         queue.enqueue("First");
         queue.enqueue("Second");
         queue.enqueue("Third");
@@ -51,9 +58,9 @@ class ArrayQueueTest {
 
     }
 
-    @Test
-    void testSize() {
-        Queue<String> queue = new ArrayQueue<>();
+    @ParameterizedTest
+    @MethodSource(value = "createQueues")
+    void testSize(Queue<String> queue) {
         assertEquals(0, queue.size());
         queue.enqueue("First");
         assertEquals(1, queue.size());
@@ -72,9 +79,9 @@ class ArrayQueueTest {
         assertEquals(0, queue.size());
     }
 
-    @Test
-    void testExtendability() {
-        Queue<String> queue = new ArrayQueue<>();
+    @ParameterizedTest
+    @MethodSource(value = "createQueues")
+    void testExtendability(Queue<String> queue) {
         queue.enqueue("One");
         queue.enqueue("Two");
         queue.enqueue("Three");

@@ -28,4 +28,9 @@ public interface Stack<T> {
      * @return true if stack is empty.
      */
     boolean isEmpty();
+
+    /**
+     * Returns size of this stack.
+     */
+    int size();
 }
