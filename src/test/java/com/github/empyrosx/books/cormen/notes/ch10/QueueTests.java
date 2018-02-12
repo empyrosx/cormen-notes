@@ -11,7 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class QueueTests {
 
     private static Stream<Queue<String>> createQueues() {
-        return Stream.of(new ArrayQueue<>(), new QueueByTwoStacks<>());
+        return Stream.of(
+                new ArrayQueue<>(),
+                new QueueByTwoStacks<>(),
+                new QueueBySingleLinkedList<>()
+        );
     }
 
     @ParameterizedTest

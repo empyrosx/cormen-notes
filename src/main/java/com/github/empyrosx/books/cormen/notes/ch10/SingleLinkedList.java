@@ -19,25 +19,25 @@ import com.github.empyrosx.books.cormen.notes.structures.List;
  */
 public class SingleLinkedList<T> implements List<T> {
 
-    private Node<T> head;
+    private SingleLinkedNode<T> head;
 
     @Override
     public void add(T key) {
-        head = new Node<>(key, head);
+        head = new SingleLinkedNode<>(key, head);
     }
 
     @Override
     public void delete(T key) {
-        Node<T> node = findNode(key);
+        SingleLinkedNode<T> node = findNode(key);
         deleteByNode(node);
     }
 
-    private void deleteByNode(Node<T> node) {
+    private void deleteByNode(SingleLinkedNode<T> node) {
         if (node == null) {
             return;
         }
 
-        Node<T> prev = findPrevNode(node);
+        SingleLinkedNode<T> prev = findPrevNode(node);
         if (prev != null) {
             prev.next = node.next;
         } else {
@@ -45,8 +45,8 @@ public class SingleLinkedList<T> implements List<T> {
         }
     }
 
-    private Node<T> findPrevNode(Node<T> node) {
-        Node<T> prev = head;
+    private SingleLinkedNode<T> findPrevNode(SingleLinkedNode<T> node) {
+        SingleLinkedNode<T> prev = head;
         while (prev != null) {
             if (prev.next == node) {
                 return prev;
@@ -59,7 +59,7 @@ public class SingleLinkedList<T> implements List<T> {
     @Override
     public int size() {
         int result = 0;
-        Node<T> n = head;
+        SingleLinkedNode<T> n = head;
         while (n != null) {
             result++;
             n = n.next;
@@ -72,8 +72,8 @@ public class SingleLinkedList<T> implements List<T> {
         return head != null ? head.key : null;
     }
 
-    private Node<T> findNode(T key) {
-        Node<T> n = head;
+    private SingleLinkedNode<T> findNode(T key) {
+        SingleLinkedNode<T> n = head;
         while (n != null) {
             if (key.equals(n.key)) {
                 return n;
@@ -90,21 +90,4 @@ public class SingleLinkedList<T> implements List<T> {
                 '}';
     }
 
-    private static class Node<T> {
-        private Node<T> next;
-        private T key;
-
-        private Node(T key, Node<T> next) {
-            this.key = key;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "next=" + next +
-                    ", key=" + key +
-                    '}';
-        }
-    }
 }
