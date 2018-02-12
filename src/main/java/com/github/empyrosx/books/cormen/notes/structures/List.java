@@ -10,16 +10,16 @@ public interface List<T> {
     /**
      * Adds element at the head of the list.
      *
-     * @param element element to add
+     * @param key element to add
      */
-    void add(T element);
+    void add(T key);
 
     /**
      * Deletes element from the list.
      *
-     * @param element element to delete
+     * @param key element to delete
      */
-    void delete(T element);
+    void delete(T key);
 
     /**
      * Returns size of the list.

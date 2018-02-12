@@ -4,33 +4,38 @@ import com.github.empyrosx.books.cormen.notes.structures.List;
 
 /**
  * Doubly-linked list implementation.
- *
- * add(T)    = O(1)
- *
- * delete(T) = O(n), because we must find element by key
- * (can be optimizing if we can get pointer to node without search)
- *
+ * <p>
+ * add()          = O(1)
+ * <p>
+ * deleteByNode() = O(1)
+ * <p>
+ * delete()       = O(n), because we must find element by key
+ * <p>
  * size      = O(n), because we must iterate all elements to count
  * (can be optimized with additional counter)
  *
  * @param <T> generic element type
  */
-public class LinkedList<T> implements List<T> {
+public class DoublyLinkedList<T> implements List<T> {
 
     private Node<T> head;
 
     @Override
-    public void add(T element) {
+    public void add(T key) {
         Node<T> oldHead = head;
-        head = new Node<>(element, null, oldHead);
+        head = new Node<>(key, null, oldHead);
         if (oldHead != null) {
             oldHead.prev = head;
         }
     }
 
     @Override
-    public void delete(T element) {
-        Node<T> node = findNode(element);
+    public void delete(T key) {
+        Node<T> node = findNode(key);
+        deleteByNode(node);
+    }
+
+    private void deleteByNode(Node<T> node) {
         if (node == null) {
             return;
         }
@@ -68,15 +73,31 @@ public class LinkedList<T> implements List<T> {
         return null;
     }
 
-    private static class Node<T> {
-        Node<T> prev;
-        Node<T> next;
-        T key;
+    @Override
+    public String toString() {
+        return "DoublyLinkedList{" +
+                "head=" + head +
+                '}';
+    }
 
-        Node(T key, Node<T> prev, Node<T> next) {
+    private static class Node<T> {
+        private Node<T> prev;
+        private Node<T> next;
+        private T key;
+
+        private Node(T key, Node<T> prev, Node<T> next) {
             this.key = key;
             this.prev = prev;
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "prev=" + prev +
+                    ", next=" + next +
+                    ", key=" + key +
+                    '}';
         }
     }
 }
