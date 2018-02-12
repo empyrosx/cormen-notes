@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DoublyLinkedListTest {
+class ListTests {
 
     private static Stream<List<String>> createLists() {
         return Stream.of(new DoublyLinkedList<>(), new SingleLinkedList<>());

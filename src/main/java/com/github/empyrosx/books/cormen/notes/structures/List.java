@@ -25,4 +25,9 @@ public interface List<T> {
      * Returns size of the list.
      */
     int size();
+
+    /**
+     * Returns value of head element.
+     */
+    T head();
 }

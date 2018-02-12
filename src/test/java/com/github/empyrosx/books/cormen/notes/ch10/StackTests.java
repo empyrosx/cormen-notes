@@ -9,10 +9,14 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ArrayStackTest {
+class StackTests {
 
     private static Stream<Stack<String>> createStacks() {
-        return Stream.of(new ArrayStack<>(), new StackByTwoQueues<>());
+        return Stream.of(
+                new ArrayStack<>(),
+                new StackByTwoQueues<>(),
+                new StackBySingleLinkedList<>()
+        );
     }
 
     @ParameterizedTest

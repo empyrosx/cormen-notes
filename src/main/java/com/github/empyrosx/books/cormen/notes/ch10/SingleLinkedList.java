@@ -67,6 +67,11 @@ public class SingleLinkedList<T> implements List<T> {
         return result;
     }
 
+    @Override
+    public T head() {
+        return head != null ? head.key : null;
+    }
+
     private Node<T> findNode(T key) {
         Node<T> n = head;
         while (n != null) {
